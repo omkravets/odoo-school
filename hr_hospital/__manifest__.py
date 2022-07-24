@@ -2,7 +2,7 @@
 {
     'name': "Hr_hospital",
     'summary': "",
-    'author': "omkravets",
+    'author': "Oleksandr Kravets",
 
     'category': 'Productivity',
     'license': "LGPL-3",
@@ -16,11 +16,11 @@
     'data': [
         'security/ir.model.access.csv',
         'views/menu.xml',
-        'views/patient.xml',
-        'views/doctor.xml',
-        'views/contact_person.xml',
-        'views/illness.xml',
-        'views/diagnosis.xml',
+        'views/omk_hosp_patient.xml',
+        'views/omk_hosp_doctor.xml',
+        'views/omk_hosp_contact_person.xml',
+        'views/omk_hosp_illness.xml',
+        'views/omk_hosp_diagnosis.xml',
     ],
 
     'application': True,

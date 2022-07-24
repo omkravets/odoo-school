@@ -2,12 +2,12 @@ import logging
 
 #
 
-from odoo import models, fields, api, exceptions, _
+from odoo import models
 
 _logger = logging.getLogger(__name__)
 
 
-class contact_person(models.Model):
+class OmkHospContactPerson(models.Model):
     _name = "omk.hosp.contact_person"
     _description = "Contact persons"
     _inherit = "omk.hosp.person"

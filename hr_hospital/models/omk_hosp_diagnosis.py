@@ -2,12 +2,12 @@ import logging
 
 #
 
-from odoo import models, fields, api, exceptions, _
+from odoo import models, fields, api
 
 _logger = logging.getLogger(__name__)
 
 
-class patient(models.Model):
+class OmkHospDiagnosis(models.Model):
     _name = "omk.hosp.diagnosis"
     _description = "Diagnosis"
 
