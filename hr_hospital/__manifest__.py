@@ -15,11 +15,11 @@
     'data': [
         'security/ir.model.access.csv',
         'views/hr_hospital_main_menu.xml',
-        'views/omk_hosp_patient.xml',
-        'views/omk_hosp_doctor.xml',
-        'views/omk_hosp_contact_person.xml',
-        'views/omk_hosp_illness.xml',
-        'views/omk_hosp_diagnosis.xml',
+        'views/omk_hosp_patient_views.xml',
+        'views/omk_hosp_doctor_views.xml',
+        'views/omk_hosp_contact_person_views.xml',
+        'views/omk_hosp_illness_views.xml',
+        'views/omk_hosp_diagnosis_views.xml',
     ],
 
     'application': True,
