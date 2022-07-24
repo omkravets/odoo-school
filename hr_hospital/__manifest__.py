@@ -15,7 +15,7 @@
 
     'data': [
         'security/ir.model.access.csv',
-        'views/menu.xml',
+        'views/hr_hospital_main_menu.xml',
         'views/omk_hosp_patient.xml',
         'views/omk_hosp_doctor.xml',
         'views/omk_hosp_contact_person.xml',
