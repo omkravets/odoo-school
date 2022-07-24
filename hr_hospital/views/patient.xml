@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <record id = "omk_hosp_patient_tree" model = "ir.ui.view">
+        <field name="name">omk.hosp.patient.tree ()</field>
+        <field name = "model">omk.hosp.patient</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="gender"/>
+                <field name="birth_date"/>
+                <field name="age"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id = "omk_hosp_patient_form" model="ir.ui.view">
+        <field name="name">omk.hosp.patient.form ()</field>
+        <field name="model">omk.hosp.patient</field>
+        <field name="arch" type="xml">
+            <form>
+                <header></header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="birth_date"/>
+                        <field name="age"/>
+                        <field name="gender"/>
+                        <field name="email"/>
+                        <field name="phone_number"/>
+                        <field name="photo"/>
+                        <field name="passport" />
+                        <field name="contact_person_id"/>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id = "omk_hosp_patient_act_window" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">omk.hosp.patient</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="omk_hosp_patient_tree"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+               Create first patient
+            </p>
+        </field>
+    </record>
+
+    <menuitem id = "omk_hosp_patient_menu"
+              name = "Patients"
+              parent = "omk_hosp_catalogs_menu"
+              sequence = "300"
+              action="omk_hosp_patient_act_window"  />
+
+</odoo>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <record id = "omk_hosp_doctor_tree" model = "ir.ui.view">
+        <field name="name">omk.hosp.doctor.tree ()</field>
+        <field name = "model">omk.hosp.doctor</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="specialization"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id = "omk_hosp_doctor_form" model="ir.ui.view">
+        <field name="name">omk.hosp.doctor.form ()</field>
+        <field name="model">omk.hosp.doctor</field>
+        <field name="arch" type="xml">
+            <form>
+                <header></header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="gender"/>
+                        <field name="email"/>
+                        <field name="phone_number"/>
+                        <field name="photo"/>
+                        <field name="specialization"/>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id = "omk_hosp_doctor_act_window" model="ir.actions.act_window">
+        <field name="name">Doctors</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">omk.hosp.doctor</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="omk_hosp_doctor_tree"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+               Create first doctor
+            </p>
+        </field>
+    </record>
+
+    <menuitem id = "omk_hosp_doctor_menu"
+              name = "Doctors"
+              parent = "omk_hosp_catalogs_menu"
+              sequence = "400"
+              action="omk_hosp_doctor_act_window"  />
+</odoo>

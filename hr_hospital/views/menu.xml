@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+  <menuitem id="omk_hosp_main_menu"
+            name = "Hospital"
+            sequence = "300" />
+
+  <menuitem id="omk_hosp_catalogs_menu"
+            name = "Catalogs"
+            parent = "omk_hosp_main_menu"
+            sequence="100"   />
+
+
+  <menuitem id="omk_hosp_settings_main_menu"
+            name = "Settings"
+            parent = "omk_hosp_main_menu"
+            sequence="9999"/>
+
+</odoo>

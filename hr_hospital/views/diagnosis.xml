@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <record id = "omk_hosp_diagnosis_tree" model = "ir.ui.view">
+        <field name="name">omk.hosp.diagnosis.tree ()</field>
+        <field name = "model">omk.hosp.diagnosis</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="patient_id"/>
+                <field name="doctor_id"/>
+                <field name="illness_id"/>
+                <field name="diagnosis_date"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id = "omk_hosp_diagnosis_form" model="ir.ui.view">
+        <field name="name">omk.hosp.diagnosis.form ()</field>
+        <field name="model">omk.hosp.diagnosis</field>
+        <field name="arch" type="xml">
+            <form>
+                <header></header>
+                <sheet>
+                    <group>
+                        <field name="patient_id"/>
+                        <field name="doctor_id"/>
+                        <field name="illness_id"/>
+                        <field name="diagnosis_date"/>
+                        <field name="treatment"/>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id = "omk_hosp_diagnosis_act_window" model="ir.actions.act_window">
+        <field name="name">Diagnoses</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">omk.hosp.diagnosis</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="omk_hosp_diagnosis_tree"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+               Create first diagnosis
+            </p>
+        </field>
+    </record>
+
+    <menuitem id = "omk_hosp_diagnosis_menu"
+              name = "Diagnoses"
+              parent = "omk_hosp_main_menu"
+              sequence = "400"
+              action="omk_hosp_diagnosis_act_window"  />
+</odoo>
