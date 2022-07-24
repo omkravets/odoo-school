@@ -10,7 +10,6 @@
                 <field name="doctor_id"/>
                 <field name="illness_id"/>
                 <field name="diagnosis_date"/>
-
             </tree>
         </field>
     </record>
@@ -28,7 +27,6 @@
                         <field name="illness_id"/>
                         <field name="diagnosis_date"/>
                         <field name="treatment"/>
-
                     </group>
                 </sheet>
             </form>
