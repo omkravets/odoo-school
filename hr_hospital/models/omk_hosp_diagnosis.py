@@ -26,7 +26,9 @@ class OmkHospDiagnosis(models.Model):
                                  ondelete="restrict",
                                  required=True)
 
-    diagnosis_date = fields.Date("Diagnosis", required=True, default=fields.Date.today)
+    diagnosis_date = fields.Date("Diagnosis date",
+                                 required=True,
+                                 default=fields.Date.today)
 
     treatment = fields.Text(string="Prescribed treatment")
 
@@ -39,4 +41,6 @@ class OmkHospDiagnosis(models.Model):
             patient_name = str(diagn.patient_id.name)
             diagnosis = str(diagn.illness_id.name)
             doctor_name = str(diagn.doctor_id.name)
-            diagn.name = patient_name + " - " + diagnosis + " (" + doctor_name + ")"
+            diagn.name = patient_name + " - " +\
+                diagnosis + " (" +\
+                doctor_name + ")"

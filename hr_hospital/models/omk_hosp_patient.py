@@ -16,8 +16,8 @@ class OmkHospPatient(models.Model):
     passport = fields.Char("Passport number")
     age = fields.Integer(compute="_compute_patient_age", compute_sudo=True)
     contact_person_id = fields.Many2one(string="Contact person",
-                                       comodel_name="omk.hosp.contact_person",
-                                       ondelete="restrict")
+                                        comodel_name="omk.hosp.contact_person",
+                                        ondelete="restrict")
 
     @api.depends("birth_date")
     def _compute_patient_age(self):
@@ -27,4 +27,6 @@ class OmkHospPatient(models.Model):
         today = date.today()
         for patient in self:
             birthdate = patient.birth_date
-            patient.age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
+            patient.age = today.year - birthdate.year - (
+                (today.month, today.day) <
+                (birthdate.month, birthdate.day))
