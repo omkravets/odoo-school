@@ -13,9 +13,8 @@ class OmkHospPerson(models.AbstractModel):
 
     email = fields.Char(string="E-mail")
 
-    phone_number = fields.Char(string="Phone number")
+    phone_number = fields.Char(string="Phone")
 
     photo = fields.Image("Image", max_width=1024, max_height=1024)
 
-    gender = fields.Selection([('male', 'male'), ('female', 'female')], string="Gender")
-
+    gender = fields.Selection([('male', 'male'), ('female', 'female')])

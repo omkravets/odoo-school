@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 {
     'name': "Hr_hospital",
     'summary': "",
@@ -30,4 +29,3 @@
     'currency': 'EUR',
 
 }
-

@@ -12,4 +12,4 @@ class OmkHospDoctor(models.Model):
     _description = "Doctor"
     _inherit = "omk.hosp.person"
 
-    specialization = fields.Char("Specialization", required=True)
+    specialization = fields.Char(required=True)

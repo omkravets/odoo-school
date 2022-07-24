@@ -11,6 +11,3 @@ class OmkHospIllness(models.Model):
 
     name = fields.Char('Illness name', required=True, translate=True)
     parent_id = fields.Many2one("omk.hosp.illness", string="Parent")
-
-
-
