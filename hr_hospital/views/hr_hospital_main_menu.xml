@@ -3,6 +3,7 @@
 <odoo>
   <menuitem id="omk_hosp_main_menu"
             name = "Hospital"
+            web_icon="hr_hospital,static/description/icon.png"
             sequence = "300" />
 
   <menuitem id="omk_hosp_catalogs_menu"
