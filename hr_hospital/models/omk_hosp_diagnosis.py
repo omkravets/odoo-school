@@ -41,6 +41,7 @@ class OmkHospDiagnosis(models.Model):
             patient_name = str(diagn.patient_id.name)
             diagnosis = str(diagn.illness_id.name)
             doctor_name = str(diagn.doctor_id.name)
+            diagnosis_date = str(diagn.diagnosis_date)
             diagn.name = patient_name + " - " +\
                 diagnosis + " (" +\
-                doctor_name + ")"
+                doctor_name + ") - " + diagnosis_date

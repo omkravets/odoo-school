@@ -20,6 +20,8 @@
         'views/omk_hosp_contact_person_views.xml',
         'views/omk_hosp_illness_views.xml',
         'views/omk_hosp_diagnosis_views.xml',
+        'views/omk_hosp_visit_views.xml',
+        'views/omk_hosp_assignment_views.xml',
     ],
 
     'application': True,

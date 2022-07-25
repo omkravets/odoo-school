@@ -7,7 +7,9 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
+                <field name="intern"/>
                 <field name="specialization"/>
+
 
             </tree>
         </field>
@@ -26,6 +28,8 @@
                         <field name="email"/>
                         <field name="phone_number"/>
                         <field name="photo"/>
+                        <field name="intern"/>
+                        <field name="mentor_id" domain="[('intern','=',False)]"/>
                         <field name="specialization"/>
 
                     </group>
