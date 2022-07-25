@@ -6,3 +6,6 @@ from . import omk_hosp_illness
 from . import omk_hosp_diagnosis
 from . import omk_hosp_visit
 from . import omk_hosp_assignment
+from . import omk_hosp_analysis_type
+from . import omk_hosp_sample_type
+from . import omk_hosp_analysis

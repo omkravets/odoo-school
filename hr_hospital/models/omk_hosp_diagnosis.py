@@ -34,6 +34,17 @@ class OmkHospDiagnosis(models.Model):
 
     name = fields.Char(compute="_compute_diagnosis_name")
 
+    intern = fields.Boolean(compute="_compute_intern")
+
+    mentor = fields.Char(compute="_compute_mentor_name")
+
+    mentors_comment = fields.Text("Mentor's comment")
+
+    analysis_ids = fields.Many2many(comodel_name="omk.hosp.analysis",
+                                    relation="diagnosis_to_analysis",
+                                    column1="diagnosis_id",
+                                    column2="analysis_id")
+
     @api.depends("patient_id", "doctor_id", "illness_id", "diagnosis_date")
     def _compute_diagnosis_name(self):
         # from datetime import date
@@ -45,3 +56,19 @@ class OmkHospDiagnosis(models.Model):
             diagn.name = patient_name + " - " +\
                 diagnosis + " (" +\
                 doctor_name + ") - " + diagnosis_date
+
+    @api.depends("doctor_id")
+    def _compute_intern(self):
+        for rec in self:
+            if rec.doctor_id.intern:
+                rec.intern = True
+            else:
+                rec.intern = False
+
+    @api.depends("doctor_id")
+    def _compute_mentor_name(self):
+        for rec in self:
+            if rec.doctor_id.mentor_id:
+                rec.mentor = rec.doctor_id.mentor_id.name
+            else:
+                rec.mentor = ""

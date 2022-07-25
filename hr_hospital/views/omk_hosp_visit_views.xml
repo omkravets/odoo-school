@@ -27,6 +27,7 @@
                         <field name="diagnosis_id"/>
                         <field name="visit_datetime"/>
                         <field name="recommendations"/>
+                        <field name="analysis_ids"/>
                     </group>
                 </sheet>
             </form>

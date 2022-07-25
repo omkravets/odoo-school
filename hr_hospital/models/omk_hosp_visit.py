@@ -32,6 +32,11 @@ class OmkHospVisit(models.Model):
 
     recommendations = fields.Text(string="Visit recommendations")
 
+    analysis_ids = fields.Many2many(comodel_name="omk.hosp.analysis",
+                                    relation="visit_to_analysis",
+                                    column1="visit_id",
+                                    column2="analysis_id")
+
     name = fields.Char(compute="_compute_visit_name")
 
     @api.depends("patient_id", "doctor_id", "visit_datetime")

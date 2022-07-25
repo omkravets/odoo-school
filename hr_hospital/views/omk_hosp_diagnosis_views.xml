@@ -27,6 +27,10 @@
                         <field name="illness_id"/>
                         <field name="diagnosis_date"/>
                         <field name="treatment"/>
+                        <field name="intern"/>
+                        <field name="mentor"/>
+                        <field name="mentors_comment"/>
+                        <field name="analysis_ids"/>
                     </group>
                 </sheet>
             </form>
