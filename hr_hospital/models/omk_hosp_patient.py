@@ -1,4 +1,5 @@
 import logging
+from datetime import date
 
 from odoo import models, fields, api, exceptions, _
 
@@ -24,8 +25,6 @@ class OmkHospPatient(models.Model):
     @api.depends("birth_date")
     def _compute_patient_age(self):
 
-        from datetime import date
-
         today = date.today()
         for rec in self:
             if rec.birth_date:
@@ -34,11 +33,21 @@ class OmkHospPatient(models.Model):
             else:
                 rec.age = ""
 
+    # @api.model
+    # def create(self, vals_list):
+    #     from datetime import date
+    #     for rec in self:
+    #         if "doctor_id" not in rec:
+    #             vals = {
+    #                     "patient_id": self.ids[0],
+    #                     "doctor_id": self.doctor_id.id,
+    #                     "date": date.today()
+    #                 }
+    #         return super().create(vals)
+
     @api.onchange("doctor_id")
     def _onchange_doctor_id(self):
-        from datetime import date
-        print("=============================================")
-        # self.ensure_one()
+
         vals = {
                 "patient_id": self.ids[0],
                 "doctor_id": self.doctor_id.id,
