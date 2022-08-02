@@ -26,6 +26,7 @@
                         <field name="analysis_type_id"/>
                         <field name="sample_type_id"/>
                         <field name="conclusion"/>
+                        <field name="diagnosis_ids"/>
                     </group>
                 </sheet>
             </form>

@@ -10,5 +10,5 @@ class OmkHospIllness(models.Model):
     _description = "Illness"
 
     name = fields.Char('Illness name', required=True, translate=True)
-    parent_id = fields.Many2one("omk.hosp.illness", string="Parent")
-    child_ids = fields.One2many('omk.hosp.illness', 'parent_id', string='Sub Levels')
+    parent_id = fields.Many2one(comodel_name="omk.hosp.illness", string="Parent")
+    child_ids = fields.One2many(comodel_name='omk.hosp.illness', inverse_name='parent_id', string='Sub Levels')

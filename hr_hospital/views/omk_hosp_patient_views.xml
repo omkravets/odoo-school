@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <odoo>
-    <record id = "omk_hosp_patient_tree" model = "ir.ui.view">
+
+   <record id = "omk_hosp_patient_tree" model = "ir.ui.view">
         <field name="name">omk.hosp.patient.tree ()</field>
         <field name = "model">omk.hosp.patient</field>
         <field name="arch" type="xml">
@@ -19,21 +20,60 @@
         <field name="model">omk.hosp.patient</field>
         <field name="arch" type="xml">
             <form>
-                <header></header>
+                <header>
+                </header>
                 <sheet>
-                    <group>
-                        <field name="name"/>
-                        <field name="birth_date"/>
-                        <field name="age"/>
-                        <field name="gender"/>
-                        <field name="email"/>
-                        <field name="phone_number"/>
-                        <field name="photo"/>
-                        <field name="passport" />
-                        <field name="contact_person_id"/>
-                        <field name="doctor_id"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="omk_hosp_visit_act_window"
+                                class="oe_stat_button"
+                                type="object"
+                                icon="fa-calendar">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text"> Visits </span>
+                            </div>
+                        </button>
+                        <button name="omk_hosp_assignment_act_window"
+                                class="oe_stat_button"
+                                type="object"
+                                icon="fa-user-md">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text"> Assignments </span>
+                            </div>
+                        </button>
+                        <button name="omk_hosp_analysis_act_window"
+                                class="oe_stat_button"
+                                type="object"
+                                icon="fa-flask">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text"> Analyses </span>
+                            </div>
+                        </button>
 
+                    </div>
+                    <group>
+                        <group>
+                             <field name="name"/>
+                            <field name="birth_date"/>
+                            <field name="age"/>
+                            <field name="gender"/>
+                            <field name="email"/>
+                            <field name="phone_number"/>
+                        </group>
+                        <group>
+                            <field name="photo"/>
+                            <field name="passport" />
+                            <field name="contact_person_id"/>
+                            <field name="doctor_id"/>
+                        </group>
                     </group>
+                    <notebook>
+                        <page string="Assignment">
+                            <field name="assignment_ids"/>
+                        </page>
+                        <page string="Illness">
+                            <field name="diagnosis_ids"/>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
@@ -51,6 +91,7 @@
             </p>
         </field>
     </record>
+
 
     <menuitem id = "omk_hosp_patient_menu"
               name = "Patients"

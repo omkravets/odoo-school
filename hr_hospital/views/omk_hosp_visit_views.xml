@@ -40,12 +40,36 @@
         <field name="res_model">omk.hosp.visit</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="omk_hosp_visit_tree"/>
+        <field name="context">
+            {"default_patient_id":[]}
+        </field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                Create first visit
             </p>
         </field>
     </record>
+
+    <record id="omk_hosp_visit_create_act_window" model="ir.actions.act_window">
+       <field name="name">Add visit</field>
+       <field name="type">ir.actions.act_window</field>
+       <field name="res_model">omk.hosp.visit</field>
+       <field name="view_mode">form</field>
+       <field name="binding_model_id" ref="model_omk_hosp_patient" />
+       <field name="context">
+           {"default_patient_id": active_id}
+       </field>
+       <field name="binding_view_types">form</field>
+    </record>
+
+    <record id="omk_hosp_visit_add_act" model="ir.actions.act_window">
+       <field name="name">Add visit</field>
+       <field name="type">ir.actions.act_window</field>
+       <field name="res_model">omk.hosp.visit</field>
+       <field name="view_mode">form</field>
+    </record>
+
+
 
     <menuitem id = "omk_hosp_visit_menu"
               name = "Visits"

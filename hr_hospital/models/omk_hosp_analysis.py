@@ -33,6 +33,11 @@ class OmkHospAnalysis(models.Model):
     conclusion = fields.Text(string="Conclutions",
                              required=True)
 
+    diagnosis_ids = fields.Many2many(comodel_name="omk.hosp.diagnosis",
+                                     relation="diagnosis_to_analysis",
+                                     column2="diagnosis_id",
+                                     column1="analysis_id")
+
     name = fields.Char(compute="_compute_analysis_name")
 
     @api.depends("patient_id", "analysis_type_id")

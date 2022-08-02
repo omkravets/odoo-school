@@ -17,3 +17,6 @@ class OmkHospDoctor(models.Model):
     mentor_id = fields.Many2one(string="Mentor",
                                 comodel_name="omk.hosp.doctor",
                                 ondelete="restrict")
+    intern_ids = fields.One2many(string="Interns",
+                                 comodel_name="omk.hosp.doctor",
+                                 inverse_name="mentor_id")
