@@ -27,7 +27,7 @@
                         <field name="illness_id"/>
                         <field name="diagnosis_date"/>
                         <field name="treatment"/>
-                        <field name="intern"/>
+                        <field name="is_intern"/>
                         <field name="mentor"/>
                         <field name="mentors_comment"/>
                         <field name="analysis_ids"/>
@@ -37,11 +37,38 @@
         </field>
     </record>
 
+    <record id = "omk_hosp_diagnosis_pivot" model="ir.ui.view">
+        <field name="name">omk.hosp.diagnosis.pivot ()</field>
+        <field name="model">omk.hosp.diagnosis</field>
+        <field name="arch" type="xml">
+            <pivot display_quantity="1">
+                <field name="illness_id" type="row"/>
+                <field name="illness_type" type="row"/>
+<!--                <field name="illness_id"/>-->
+                 <field name="diagnosis_date" type="col" interval="year"/>
+                <field name="diagnosis_date" type="col" interval="month"/>
+
+            </pivot>
+        </field>
+    </record>
+
+     <record id = "omk_hosp_diagnosis_graph" model="ir.ui.view">
+        <field name="name">omk.hosp.diagnosis.graph ()</field>
+        <field name="model">omk.hosp.diagnosis</field>
+        <field name="arch" type="xml">
+            <graph type="bar">
+                <field name="diagnosis_date" interval="month"/>
+                <field name="illness_type"/>
+
+            </graph>
+        </field>
+     </record>
+
     <record id = "omk_hosp_diagnosis_act_window" model="ir.actions.act_window">
         <field name="name">Diagnoses</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">omk.hosp.diagnosis</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
         <field name="view_id" ref="omk_hosp_diagnosis_tree"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

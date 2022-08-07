@@ -20,6 +20,10 @@ class OmkHospAnalysis(models.Model):
                                 ondelete="restrict",
                                 required=True)
 
+    date = fields.Date(string="Date",
+                       required=True,
+                       default=fields.Date.today)
+
     analysis_type_id = fields.Many2one(string="Analysis type",
                                        comodel_name="omk.hosp.analysis_type",
                                        ondelete="restrict",
@@ -43,4 +47,4 @@ class OmkHospAnalysis(models.Model):
     @api.depends("patient_id", "analysis_type_id")
     def _compute_analysis_name(self):
         for rec in self:
-            rec.name = str(self.patient_id.name) + " -- " + str(self.analysis_type_id.name)
+            rec.name = f"{self.patient_id.name} -- {self.analysis_type_id.name}"

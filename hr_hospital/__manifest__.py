@@ -19,12 +19,14 @@
         'views/omk_hosp_doctor_views.xml',
         'views/omk_hosp_contact_person_views.xml',
         'views/omk_hosp_illness_views.xml',
+        'views/omk_hosp_illness_type_views.xml',
         'views/omk_hosp_diagnosis_views.xml',
         'views/omk_hosp_visit_views.xml',
         'views/omk_hosp_assignment_views.xml',
         'views/omk_hosp_analysis_type_views.xml',
         'views/omk_hosp_sample_type_views.xml',
         'views/omk_hosp_analysis_views.xml',
+        'wizard/omk_hosp_set_doctor_wizard_views.xml'
     ],
 
     'application': True,

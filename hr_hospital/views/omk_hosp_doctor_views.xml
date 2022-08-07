@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
-                <field name="intern"/>
+                <field name="is_intern"/>
                 <field name="specialization"/>
 
             </tree>
@@ -21,28 +21,39 @@
             <form>
                 <header></header>
                 <sheet>
-                    <group>
-                        <div class="oe_title">
+                    <div class="oe_title">
                             <h1>
                                 <field name="name"/>
                             </h1>
                         </div>
+                    <group>
+                        <group>
+                            <field name="gender"/>
+                            <field name="email"/>
+                            <field name="phone_number"/>
+                        </group>
+                        <group>
+                            <field name="photo"/>
+                            <field name="is_intern"/>
 
-                        <field name="gender"/>
-                        <field name="email"/>
-                        <field name="phone_number"/>
-                        <field name="photo"/>
-                        <field name="intern"/>
-                        <field name="mentor_id" domain="[('intern','=',False)]"/>
-                        <field name="specialization"/>
+                            <field name="specialization"/>
+                        </group>
 
                     </group>
                     <notebook>
-                        <page string="Interns">
-                                <field name="intern_ids" mode="kanban"/>
+                        <page name="interns" string="Interns" attrs="{'invisible':[('is_intern','=',True)]}">
+                                <field name="intern_ids" mode="kanban">
+
+                                </field>
                         </page>
-                        <page string="Mentor's info">
-                            <field name="mentor_id"/>
+                        <page name="mentor" string="Mentor's info" attrs="{'invisible':[('is_intern','=',False)]}">
+                                <field name="mentor_id" domain="[('is_intern','=',False)]">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="specialization"/>
+                                        <field name="phone_number"/>
+                                    </tree>
+                                </field>
                         </page>
                     </notebook>
                 </sheet>
@@ -59,13 +70,40 @@
                 <field name="specialization"/>
                     <templates>
                         <t t-name="kanban-box">
-                            <div>
-
-                                <div>
-                                    <b> <field name="name"/> </b>
+                            <div class="oe_kanban_global_click">
+                                <div class="o_kanban_header_title">
+                                    <strong> <field name="name"/> </strong>
                                 </div>
                                 <div>
                                     <field name="specialization"/>
+                                </div>
+<!--                                Dropdown menu in kanban cards    -->
+                                <div class="o_dropdown_kanban dropdown">
+                                    <a class="dropdown-toggle btn"
+                                       data-toggle="dropdown" href="#">
+                                        <span class="fa fa-ellipsis-v"
+                                              area-hidden="true"/>
+                                    </a>
+                                    <div class="o_kanban_card_manage_setting row mt16">
+                                        <div class="dropdown-menu" role="menu">
+                                            <t t-if="widget.editable">
+                                                <a class="dropdown-item" role="menuitem" type="edit">Edit</a>
+                                            </t>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="container o_kanban_card_content">
+                                    <div class="row">
+                                        <div class="row-6 o_kanban_primary_left">
+                                            <button class="btn btn-primary"
+                                                    string="Add visit"
+                                                    name="omk_hosp_add_visit_from_doctor_view"
+                                                    type="object">
+                                                <span>Add visit</span>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </t>
@@ -73,6 +111,20 @@
             </kanban>
         </field>
     </record>
+
+   <record id = "omk_hosp_doctor_search" model="ir.ui.view">
+        <field name="name">omk.hosp.doctor.search (Hr_hospital)</field>
+        <field name="model">omk.hosp.doctor</field>
+        <field name="arch" type="xml">
+            <search>
+                   <filter name="mentor" string="Is mentor" domain="[('intern_ids','!=',False)]"/>
+                   <filter name="intern" string="Is intern" domain="[('is_intern','=',True)]"/>
+                   <filter name="not_personal_doctor" string="is NOT personal doctor" domain="[('patient_ids','!=',False)]"/>
+               </search>
+        </field>
+   </record>
+
+
 
     <record id = "omk_hosp_doctor_act_window" model="ir.actions.act_window">
         <field name="name">Doctors</field>

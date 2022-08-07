@@ -6,6 +6,7 @@
         <field name = "model">omk.hosp.analysis</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="date"/>
                 <field name="patient_id"/>
                 <field name="doctor_id"/>
                 <field name="analysis_type_id"/>
@@ -21,6 +22,7 @@
                 <header></header>
                 <sheet>
                     <group>
+                        <field name="date"/>
                         <field name="patient_id"/>
                         <field name="doctor_id"/>
                         <field name="analysis_type_id"/>
@@ -33,11 +35,35 @@
         </field>
     </record>
 
+    <record id = "omk_hosp_analysis_search" model="ir.ui.view">
+        <field name="name">omk.hosp.analysis.search ()</field>
+        <field name="model">omk.hosp.analysis</field>
+        <field name="arch" type="xml">
+            <search>
+               <field name="patient_id" filter_domain= "['|',('patient_id.name','ilike',self),('patient_id.phone_number','ilike',self)]"/>
+               <filter name="groupby_sample_type" string="sample_type" context="{'group_by': 'sample_type_id'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id = "omk_hosp_analysis_pivot" model="ir.ui.view">
+        <field name="name">omk.hosp.analysis.pivot ()</field>
+        <field name="model">omk.hosp.analysis</field>
+        <field name="arch" type="xml">
+            <pivot display_quantity="1" >
+                <field name="doctor_id" type="row"/>
+                <field name="sample_type_id" type="col"/>
+
+            </pivot>
+        </field>
+    </record>
+
+
     <record id = "omk_hosp_analysis_act_window" model="ir.actions.act_window">
         <field name="name">Analyses</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">omk.hosp.analysis</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,pivot</field>
         <field name="view_id" ref="omk_hosp_analysis_tree"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

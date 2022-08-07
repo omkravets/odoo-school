@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
+                <field name="full_name"/>
             </tree>
         </field>
     </record>
@@ -22,6 +23,7 @@
                 <sheet>
                     <group>
                         <field name="name"/>
+                        <field name="parent_id"/>
                     </group>
                 </sheet>
             </form>
@@ -45,5 +47,5 @@
               name = "Sample's types"
               parent = "omk_hosp_catalogs_menu"
               sequence = "850"
-              action="omk_hosp_analysis_type_act_window"  />
+              action="omk_hosp_sample_type_act_window"  />
 </odoo>

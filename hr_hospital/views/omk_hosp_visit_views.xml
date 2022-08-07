@@ -34,11 +34,25 @@
         </field>
     </record>
 
+    <record id = "omk_hosp_visit_calendar" model="ir.ui.view">
+        <field name="name">omk.hosp.visit.calendar (Hr_hospital)</field>
+        <field name="model">omk.hosp.visit</field>
+        <field eval="2" name="priority"/>
+        <field name="arch" type="xml">
+            <calendar date_start="visit_datetime" date_stop="visit_datetime" string="Calendar" mode="month" color="doctor_id">
+                <field name="patient_id"/>
+                <field name="doctor_id"/>
+                <field name="diagnosis_id"/>
+                <field name="visit_datetime"/>
+            </calendar>
+        </field>
+    </record>
+
     <record id = "omk_hosp_visit_act_window" model="ir.actions.act_window">
         <field name="name">Visits</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">omk.hosp.visit</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,calendar</field>
         <field name="view_id" ref="omk_hosp_visit_tree"/>
         <field name="context">
             {"default_patient_id":[]}

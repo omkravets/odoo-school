@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+
+    <record id = "omk_hosp_set_doctor_wizard_form" model="ir.ui.view">
+        <field name="name">omk.hosp.set_doctor_wizard.form ()</field>
+        <field name="model">omk.hosp.set_doctor_wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="doctor_id"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="set_doctor"
+                            string="Create"
+                            type="object"
+                            icon="fa-plus"
+                            class="btn-primary"/>
+                    <button special="cancel" class="oe_link" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="omk_hosp_action_set_doctor" model="ir.actions.act_window">
+        <field name="name">Set doctor to patients</field>
+        <field name="res_model">omk.hosp.set_doctor_wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_omk_hosp_patient"/>
+        <field name="binding_view_types">list</field>
+        <field name="binding_type">action</field>
+    </record>
+
+</odoo>

@@ -26,6 +26,10 @@ class OmkHospDiagnosis(models.Model):
                                  ondelete="restrict",
                                  required=True)
 
+    illness_type = fields.Char(string="Illness type",
+                               compute="_compute_illness_type",
+                               store=True)
+
     diagnosis_date = fields.Date("Diagnosis date",
                                  required=True,
                                  default=fields.Date.today)
@@ -34,7 +38,7 @@ class OmkHospDiagnosis(models.Model):
 
     name = fields.Char(compute="_compute_diagnosis_name")
 
-    intern = fields.Boolean(compute="_compute_intern")
+    is_intern = fields.Boolean(compute="_compute_intern")
 
     mentor = fields.Char(compute="_compute_mentor_name")
 
@@ -60,10 +64,10 @@ class OmkHospDiagnosis(models.Model):
     @api.depends("doctor_id")
     def _compute_intern(self):
         for rec in self:
-            if rec.doctor_id.intern:
-                rec.intern = True
+            if rec.doctor_id.is_intern:
+                rec.is_intern = True
             else:
-                rec.intern = False
+                rec.is_intern = False
 
     @api.depends("doctor_id")
     def _compute_mentor_name(self):
@@ -72,3 +76,8 @@ class OmkHospDiagnosis(models.Model):
                 rec.mentor = rec.doctor_id.mentor_id.name
             else:
                 rec.mentor = ""
+
+    @api.depends("illness_id")
+    def _compute_illness_type(self):
+        for rec in self:
+            rec.illness_type = f"{rec.illness_id.illness_type_id.name}"
