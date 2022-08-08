@@ -1,0 +1,170 @@
+<odoo>
+    <template id="omk_hosp_doctor_report_template">
+        <t t-call="web.html_container">
+
+                <div style="margin-left:auto;
+                            margin-right: 0pt;
+                            width: 300px;
+                            right: 0pt;
+                            border: 0px solid black;
+                            padding: 10px;">
+                    <t t-set="company" t-value="env.company"/>
+                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px; align:center;" alt="Logo"/>
+                    <div>
+                        <strong> <span t-esc="user.company_id.name"/> </strong>
+                        <div>
+                            <t t-esc="user.company_id.street"/> <br/>
+                            <t t-esc="user.company_id.street2"/> <br/>
+                            <t t-esc="user.company_id.city"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center">
+                    <h1> Doctors report</h1>
+                </div>
+
+                <t t-foreach="docs" t-as="doc">
+                    <div style="float: right; width: 300px; border: 0px solid black; padding: 10px;">
+
+                        <div>
+                            <span> Doctor: </span>
+                            <strong>
+                                <span t-esc="doc.name"/>
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>Speciality: </span>
+                            <strong>
+                                <span t-esc="doc.specialization"/>
+                            </strong>
+                        </div>
+                    </div>
+
+                    <table class="table-bordered" style="border: 1px solid black;" width="100%">
+                        <tr>
+                            <th style="border: 1px solid black;"> Patient name</th>
+                            <th style="border: 1px solid black;"> Patient age </th>
+                            <th style="border: 1px solid black;"> Patient birthday</th>
+                            <th style="border: 1px solid black;">Count diagnoses</th>
+                        </tr>
+                        <t t-foreach="doc.patient_ids" t-as="patient">
+                            <tr>
+                                <t t-set="diagnoses_num" t-value="len(patient.diagnosis_ids)"/>
+                                <t t-set="bg_color" t-value="'grey'"/>
+                                <t t-if="diagnoses_num &lt; 2">
+                                    <t t-set="bg_color" t-value="'green'"/>
+                                </t>
+                                <t t-elif="(diagnoses_num &gt; 1) and (diagnoses_num &lt; 4)">
+                                    <t t-set="bg_color" t-value="'yellow'"/>
+                                </t>
+                                <t t-else="">
+                                    <t t-set="bg_color" t-value="'pink'"/>
+                                </t>
+
+                                <td t-attf-style="background-color:{{bg_color}};"> <span t-esc="patient.name"/> </td>
+                                <td t-attf-style="text-align:center; background-color:{{bg_color}};"> <span t-esc="patient.age"/> </td>
+                                <td t-attf-style="text-align:center; background-color:{{bg_color}};"> <span t-esc="patient.birth_date.strftime('%d.%m.%Y')"/> </td>
+
+                                <td t-attf-style="text-align:center; background-color:{{bg_color}};">
+                                    <span t-out="diagnoses_num"/>
+                                </td>
+                            </tr>
+                        </t>
+
+                    </table>
+                    <hr style="width:50%;text-align:left;margin-left:0"/><br/>
+                </t>
+            <div style="margin-top: auto; margin-bottom:0pt;">
+                <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d.%m.%Y   %H:%M')"/>
+                _____________
+                <span t-esc="company.city"/>
+
+            </div>
+
+        </t>
+    </template>
+</odoo>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--    <template id="report_book_document">-->
+<!--        <t t-call="web.html_container">-->
+<!--            <strong>Books:</strong>-->
+<!--            <div>-->
+
+<!--                <h2 class="mt16">-->
+<!--                    <span t-field="doc.name"/>-->
+<!--                </h2>-->
+
+<!--            </div>-->
+<!--        </t>-->
+<!--    </template>-->
+
+
+<!--    <template id="report_book">-->
+<!--        <t t-call="web.html_container">-->
+<!--            <t t-set="custom" t-value="True"/>-->
+<!--            <t t-foreach="docs" t-as="doc">-->
+<!--                <t t-call="module_5_qweb.report_book_document"/>-->
+<!--            </t>-->
+<!--        </t>-->
+<!--    </template>-->
+
+
+<!--    <template id="report_book">-->
+<!--        <html>-->
+<!--            <head>-->
+<!--                <title>Book Report</title>-->
+<!--            </head>-->
+<!--            <body>-->
+<!--                <div>-->
+<!--                    <main>-->
+<!--                        <h1>This is an HTML block</h1>-->
+<!--                        <h2 class="lead">And this is a subtitle</h2>-->
+<!--                        <t t-if="condition">-->
+<!--                            <p>Test</p>-->
+<!--                        </t>-->
+<!--                        <t t-foreach="[1, 2, 3]" t-as="i">-->
+
+<!--                            <p>-->
+<!--                                <t t-out="i"/>-->
+<!--                            </p>-->
+
+<!--                        </t>-->
+<!--                        <t t-set="foo" t-value="2 + 1"/>-->
+
+<!--                        <t t-out="foo"/>-->
+<!--                    </main>-->
+<!--                </div>-->
+<!--            </body>-->
+<!--        </html>-->
+<!--    </template>-->

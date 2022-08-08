@@ -55,6 +55,16 @@
                                     </tree>
                                 </field>
                         </page>
+                        <page name="patients" string="Personal patients">
+                            <field name="patient_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="birth_date"/>
+                                    <field name="age"/>
+                                </tree>
+                            </field>
+
+                        </page>
                     </notebook>
                 </sheet>
             </form>
@@ -103,8 +113,12 @@
                                                 <span>Add visit</span>
                                             </button>
                                         </div>
+                                        <div class="row-6 o_kanban_primary_right" style="font-color:grey;">
+                                            <field name="patient_ids" widget="many2many_tags"/> <br/>
+                                        </div>
                                     </div>
                                 </div>
+
                             </div>
                         </t>
                     </templates>
@@ -123,8 +137,6 @@
                </search>
         </field>
    </record>
-
-
 
     <record id = "omk_hosp_doctor_act_window" model="ir.actions.act_window">
         <field name="name">Doctors</field>

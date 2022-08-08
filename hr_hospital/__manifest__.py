@@ -26,7 +26,9 @@
         'views/omk_hosp_analysis_type_views.xml',
         'views/omk_hosp_sample_type_views.xml',
         'views/omk_hosp_analysis_views.xml',
-        'wizard/omk_hosp_set_doctor_wizard_views.xml'
+        'wizard/omk_hosp_set_doctor_wizard_views.xml',
+        'report/omk_hosp_report_templates.xml',
+        'report/omk_hosp_report.xml',
     ],
 
     'application': True,
