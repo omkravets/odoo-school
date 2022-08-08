@@ -1,6 +1,6 @@
 import logging
 
-from odoo import _, api, models, fields
+from odoo import models, fields
 
 _logger = logging.getLogger(__name__)
 
@@ -17,7 +17,8 @@ class OmkHospChangeDoctorWizard(models.TransientModel):
     def set_doctor(self):
         # logging.info("+++++++++++++++++++++++++++++++++++++++++++++++")
         # logging.info(f"-----------------{self.doctor_id.name}----------------")
-        patients = self.env['omk.hosp.patient'].browse(self._context.get('active_ids'))
+        patients = self.env['omk.hosp.patient'].\
+            browse(self._context.get('active_ids'))
         for patient in patients:
             logging.info(f"{patient.name} ---- {patient.doctor_id.name}")
             patient.doctor_id = self.doctor_id

@@ -26,11 +26,11 @@ class OmkHospDiagnosis(models.Model):
                                  ondelete="restrict",
                                  required=True)
 
-    illness_type = fields.Char(string="Illness type",
+    illness_type = fields.Char(string="Type of illness",
                                compute="_compute_illness_type",
                                store=True)
 
-    diagnosis_date = fields.Date("Diagnosis date",
+    diagnosis_date = fields.Date("Date of diagnosis",
                                  required=True,
                                  default=fields.Date.today)
 

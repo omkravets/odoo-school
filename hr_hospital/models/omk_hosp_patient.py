@@ -1,7 +1,7 @@
 import logging
 from datetime import date
 
-from odoo import models, fields, api, exceptions, _
+from odoo import models, fields, api
 
 _logger = logging.getLogger(__name__)
 
@@ -37,7 +37,9 @@ class OmkHospPatient(models.Model):
         for rec in self:
             if rec.birth_date:
                 birthdate = rec.birth_date
-                rec.age = today.year - birthdate.year - int((today.month, today.day) < (birthdate.month, birthdate.day))
+                rec.age = today.year - birthdate.year - \
+                    int((today.month, today.day) <
+                        (birthdate.month, birthdate.day))
             else:
                 rec.age = ""
 
@@ -58,15 +60,15 @@ class OmkHospPatient(models.Model):
         if "doctor_id" not in vals:
             # якщо ми не задали лікаря
             return super().write(vals)
-        else:
-            for rec in self:
-                if rec.doctor_id != vals.get("doctor_id"):
-                    # якщо лікар, якого задали змінився
-                    self.env['omk.hosp.assignment'].create({
-                        "doctor_id": vals["doctor_id"],
-                        "patient_id": rec.id,
-                        "date": date.today()
-                    })
+
+        for rec in self:
+            if rec.doctor_id != vals.get("doctor_id"):
+                # якщо лікар, якого задали змінився
+                self.env['omk.hosp.assignment'].create({
+                    "doctor_id": vals["doctor_id"],
+                    "patient_id": rec.id,
+                    "date": date.today()
+                })
         return super().write(vals)
 
     def omk_hosp_visit_act_window(self):
@@ -101,4 +103,3 @@ class OmkHospPatient(models.Model):
             "domain": [("patient_id", "=", self.id)],
             "target": "current",
         }
-

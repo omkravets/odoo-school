@@ -10,9 +10,14 @@ class OmkHospIllnessType(models.Model):
     _description = "Illness"
 
     name = fields.Char('Illness type', required=True, translate=True)
-    full_name = fields.Char(string="Full name", compute="_compute_full_name", recursive=True, store=True)
-    parent_id = fields.Many2one(comodel_name="omk.hosp.illness_type", string="Parent")
-    child_ids = fields.One2many(comodel_name='omk.hosp.illness_type', inverse_name='parent_id', string='Sub Levels')
+    full_name = fields.Char(string="Full path",
+                            compute="_compute_full_name",
+                            recursive=True, store=True)
+    parent_id = fields.Many2one(comodel_name="omk.hosp.illness_type",
+                                string="Parent")
+    child_ids = fields.One2many(comodel_name='omk.hosp.illness_type',
+                                inverse_name='parent_id',
+                                string='Sub Levels')
 
     @api.depends("name", "parent_id.full_name")
     def _compute_full_name(self):

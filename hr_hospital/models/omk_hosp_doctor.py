@@ -2,7 +2,7 @@ import logging
 
 #
 
-from odoo import models, fields, api
+from odoo import models, fields
 
 _logger = logging.getLogger(__name__)
 
@@ -13,14 +13,16 @@ class OmkHospDoctor(models.Model):
     _inherit = "omk.hosp.person"
 
     specialization = fields.Char(required=True)
-    is_intern = fields.Boolean(string="Is intern", default=False)
+    is_intern = fields.Boolean(string="Intern",
+                               default=False)
     mentor_id = fields.Many2one(string="Mentor",
                                 comodel_name="omk.hosp.doctor",
                                 ondelete="restrict")
     intern_ids = fields.One2many(string="Interns",
                                  comodel_name="omk.hosp.doctor",
                                  inverse_name="mentor_id")
-    patient_ids = fields.One2many(string="personal patients", comodel_name="omk.hosp.patient",
+    patient_ids = fields.One2many(string="personal patients",
+                                  comodel_name="omk.hosp.patient",
                                   inverse_name="doctor_id")
 
     def omk_hosp_add_visit_from_doctor_view(self):

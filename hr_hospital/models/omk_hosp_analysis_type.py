@@ -11,4 +11,5 @@ class OmkHospAnalysisType(models.Model):
 
     name = fields.Char(string='Analysis type', required=True, translate=True)
     parent_id = fields.Many2one("omk.hosp.analysis_type", string="Parent")
-    child_ids = fields.One2many('omk.hosp.analysis_type', 'parent_id', string='Sub Levels')
+    child_ids = fields.One2many('omk.hosp.analysis_type',
+                                'parent_id', string='Sub Levels')
