@@ -25,7 +25,12 @@
                 </div>
 
                 <t t-foreach="docs" t-as="doc">
-                    <div style="float: right; width: 300px; border: 0px solid black; padding: 10px;">
+                    <div style="margin-left:auto;
+                            margin-right: 0pt;
+                            width: 300px;
+                            right: 0pt;
+                            border: 0px solid black;
+                            padding: 10px;">
 
                         <div>
                             <span> Doctor: </span>
@@ -40,6 +45,27 @@
                                 <span t-esc="doc.specialization"/>
                             </strong>
                         </div>
+                    </div>
+
+                    <div style="text-align:center; border: 1px solid green;">
+
+                        <t t-if="doc.visit_ids">
+                            <strong>Visits</strong>
+                            <t t-foreach="doc.visit_ids" t-as="visit">
+
+                                <li> <span t-field="visit.visit_datetime"/> <span t-field="visit.patient_id"/> </li>
+                            </t>
+                        </t>
+                    </div>
+                    <div style="text-align:center; border: 1px solid brown;">
+
+                        <t t-if="doc.visit_ids">
+                            <strong>Diagnoses</strong>
+                            <t t-foreach="doc.diagnosis_ids" t-as="diagnosis">
+
+                                <li> <span t-field="diagnosis.diagnosis_date"/> <span t-field="diagnosis.patient_id"/> </li>
+                            </t>
+                        </t>
                     </div>
 
                     <table class="table-bordered" style="border: 1px solid black;" width="100%">
@@ -74,7 +100,7 @@
                         </t>
 
                     </table>
-                    <hr style="width:50%;text-align:left;margin-left:0"/><br/>
+                    <hr style="width:100%;text-align:left;margin-left:0"/><br/>
                 </t>
             <div style="margin-top: auto; margin-bottom:0pt;">
                 <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d.%m.%Y   %H:%M')"/>

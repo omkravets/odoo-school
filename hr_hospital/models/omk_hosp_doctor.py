@@ -24,6 +24,12 @@ class OmkHospDoctor(models.Model):
     patient_ids = fields.One2many(string="personal patients",
                                   comodel_name="omk.hosp.patient",
                                   inverse_name="doctor_id")
+    visit_ids = fields.One2many(string="Visits",
+                                comodel_name="omk.hosp.visit",
+                                inverse_name="doctor_id")
+    diagnosis_ids = fields.One2many(string="Diagnoses",
+                                    comodel_name="omk.hosp.diagnosis",
+                                    inverse_name="doctor_id")
 
     def omk_hosp_add_visit_from_doctor_view(self):
         return {
