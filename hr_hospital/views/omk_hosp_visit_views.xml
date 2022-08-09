@@ -39,7 +39,11 @@
         <field name="model">omk.hosp.visit</field>
         <field eval="2" name="priority"/>
         <field name="arch" type="xml">
-            <calendar date_start="visit_datetime" date_stop="visit_datetime" string="Calendar" mode="month" color="doctor_id">
+            <calendar date_start="visit_datetime"
+                      date_stop="visit_datetime"
+                      string="Calendar"
+                      mode="month"
+                      color="doctor_id">
                 <field name="patient_id"/>
                 <field name="doctor_id"/>
                 <field name="diagnosis_id"/>
