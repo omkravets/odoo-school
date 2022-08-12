@@ -1,7 +1,7 @@
 <odoo>
     <template id="omk_hosp_doctor_report_template">
         <t t-call="web.html_container">
-
+            <div style="font-family:arial,sans-serif;">
                 <div style="margin-left:auto;
                             margin-right: 0pt;
                             width: 300px;
@@ -102,11 +102,12 @@
                     </table>
                     <hr style="width:100%;text-align:left;margin-left:0"/><br/>
                 </t>
-            <div style="margin-top: auto; margin-bottom:0pt;">
-                <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d.%m.%Y   %H:%M')"/>
-                _____________
-                <span t-esc="company.city"/>
+                <div style="margin-top: auto; margin-bottom:0pt;">
+                    <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d.%m.%Y   %H:%M')"/>
+                    _____________
+                    <span t-esc="company.city"/>
 
+                </div>
             </div>
 
         </t>
