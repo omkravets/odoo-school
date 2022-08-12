@@ -1,7 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="omk_hosp_doctor_report_template">
         <t t-call="web.html_container">
-            <div style="font-family:arial,sans-serif;">
+            <t t-call="web.external_layout">
+
                 <div style="margin-left:auto;
                             margin-right: 0pt;
                             width: 300px;
@@ -47,59 +49,58 @@
                         </div>
                     </div>
 
-                    <div style="text-align:center; border: 1px solid green;">
+                    <t t-if="doc.visit_ids">
+                        <div style="text-align:center; border: 1px solid green;">
+                                <strong>Visits</strong>
+                                <t t-foreach="doc.visit_ids" t-as="visit">
+                                    <li> <span t-field="visit.visit_datetime"/> <span t-field="visit.patient_id"/> </li>
+                                </t>
+                        </div>
+                    </t>
 
-                        <t t-if="doc.visit_ids">
-                            <strong>Visits</strong>
-                            <t t-foreach="doc.visit_ids" t-as="visit">
-
-                                <li> <span t-field="visit.visit_datetime"/> <span t-field="visit.patient_id"/> </li>
-                            </t>
-                        </t>
-                    </div>
-                    <div style="text-align:center; border: 1px solid brown;">
-
-                        <t t-if="doc.visit_ids">
+                    <t t-if="doc.diagnosis_ids">
+                        <div style="text-align:center; border: 1px solid brown;">
                             <strong>Diagnoses</strong>
                             <t t-foreach="doc.diagnosis_ids" t-as="diagnosis">
-
                                 <li> <span t-field="diagnosis.diagnosis_date"/> <span t-field="diagnosis.patient_id"/> </li>
                             </t>
-                        </t>
-                    </div>
+                        </div>
+                    </t>
 
-                    <table class="table-bordered" style="border: 1px solid black;" width="100%">
-                        <tr>
-                            <th style="border: 1px solid black;"> Patient name</th>
-                            <th style="border: 1px solid black;"> Patient age </th>
-                            <th style="border: 1px solid black;"> Patient birthday</th>
-                            <th style="border: 1px solid black;">Count diagnoses</th>
-                        </tr>
-                        <t t-foreach="doc.patient_ids" t-as="patient">
+                    <t t-if="doc.patient_ids">
+                        <table class="table-bordered" style="border: 1px solid black;" width="100%">
                             <tr>
-                                <t t-set="diagnoses_num" t-value="len(patient.diagnosis_ids)"/>
-                                <t t-set="bg_color" t-value="'grey'"/>
-                                <t t-if="diagnoses_num &lt; 2">
-                                    <t t-set="bg_color" t-value="'green'"/>
-                                </t>
-                                <t t-elif="(diagnoses_num &gt; 1) and (diagnoses_num &lt; 4)">
-                                    <t t-set="bg_color" t-value="'yellow'"/>
-                                </t>
-                                <t t-else="">
-                                    <t t-set="bg_color" t-value="'pink'"/>
-                                </t>
-
-                                <td t-attf-style="background-color:{{bg_color}};"> <span t-esc="patient.name"/> </td>
-                                <td t-attf-style="text-align:center; background-color:{{bg_color}};"> <span t-esc="patient.age"/> </td>
-                                <td t-attf-style="text-align:center; background-color:{{bg_color}};"> <span t-esc="patient.birth_date.strftime('%d.%m.%Y')"/> </td>
-
-                                <td t-attf-style="text-align:center; background-color:{{bg_color}};">
-                                    <span t-out="diagnoses_num"/>
-                                </td>
+                                <th style="border: 1px solid black;"> Patient name</th>
+                                <th style="border: 1px solid black;"> Patient age </th>
+                                <th style="border: 1px solid black;"> Patient birthday</th>
+                                <th style="border: 1px solid black;">Count diagnoses</th>
                             </tr>
-                        </t>
+                            <t t-foreach="doc.patient_ids" t-as="patient">
+                                <tr>
+                                    <t t-set="diagnoses_num" t-value="len(patient.diagnosis_ids)"/>
+                                    <t t-set="bg_color" t-value="'grey'"/>
+                                    <t t-if="diagnoses_num &lt; 2">
+                                        <t t-set="bg_color" t-value="'green'"/>
+                                    </t>
+                                    <t t-elif="(diagnoses_num &gt; 1) and (diagnoses_num &lt; 4)">
+                                        <t t-set="bg_color" t-value="'yellow'"/>
+                                    </t>
+                                    <t t-else="">
+                                        <t t-set="bg_color" t-value="'pink'"/>
+                                    </t>
 
-                    </table>
+                                    <td t-attf-style="background-color:{{bg_color}};"> <span t-esc="patient.name"/> </td>
+                                    <td t-attf-style="text-align:center; background-color:{{bg_color}};"> <span t-esc="patient.age"/> </td>
+                                    <td t-attf-style="text-align:center; background-color:{{bg_color}};"> <span t-esc="patient.birth_date.strftime('%d.%m.%Y')"/> </td>
+
+                                    <td t-attf-style="text-align:center; background-color:{{bg_color}};">
+                                        <span t-out="diagnoses_num"/>
+                                    </td>
+                                </tr>
+                            </t>
+
+                        </table>
+                    </t>
                     <hr style="width:100%;text-align:left;margin-left:0"/><br/>
                 </t>
                 <div style="margin-top: auto; margin-bottom:0pt;">
@@ -108,8 +109,7 @@
                     <span t-esc="company.city"/>
 
                 </div>
-            </div>
-
+            </t>
         </t>
     </template>
 </odoo>

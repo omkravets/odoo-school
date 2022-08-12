@@ -12,13 +12,19 @@ class OmkHospIllness(models.Model):
     name = fields.Char('Illness name',
                        required=True,
                        translate=True)
+
     illness_type_id = fields.Many2one(string="Illness type",
                                       comodel_name="omk.hosp.illness_type",
                                       ondelete="cascade",
                                       required=True)
+
     type_full_name = fields.Char(string="Type Full name",
                                  compute="_compute_type_full_name",
                                  store=True)
+
+    # це поле додано тому, що після зміни моделі не відкриваються старі дані
+    parent_id = fields.Many2one(comodel_name="omk.hosp.illness",
+                                ondelete="cascade")
 
     @api.depends("illness_type_id")
     def _compute_type_full_name(self):

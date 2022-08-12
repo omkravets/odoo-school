@@ -9,12 +9,18 @@ class OmkHospIllnessType(models.Model):
     _name = "omk.hosp.illness_type"
     _description = "Illness"
 
-    name = fields.Char('Illness type', required=True, translate=True)
+    name = fields.Char('Illness type',
+                       required=True,
+                       translate=True)
+
     full_name = fields.Char(string="Full path",
                             compute="_compute_full_name",
-                            recursive=True, store=True)
+                            recursive=True,
+                            store=True)
+
     parent_id = fields.Many2one(comodel_name="omk.hosp.illness_type",
                                 string="Parent")
+
     child_ids = fields.One2many(comodel_name='omk.hosp.illness_type',
                                 inverse_name='parent_id',
                                 string='Sub Levels')
