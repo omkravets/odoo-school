@@ -20,5 +20,5 @@ class OmkHospChangeDoctorWizard(models.TransientModel):
         patients = self.env['omk.hosp.patient'].\
             browse(self._context.get('active_ids'))
         for patient in patients:
-            logging.info(f"{patient.name} ---- {patient.doctor_id.name}")
+            # logging.info(f"{patient.name} ---- {patient.doctor_id.name}")
             patient.doctor_id = self.doctor_id
