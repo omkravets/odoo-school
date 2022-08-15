@@ -29,8 +29,6 @@
                                 <field name="name"/>
                             </tree>
                         </field>
-<!--                        <separator colspan="2"/>-->
-<!--                        <field name="user_id" options="{'no_open': True, 'no_create': True}"/>-->
                     </group>
                 </sheet>
             </form>
