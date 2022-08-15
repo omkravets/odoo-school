@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo noupdate="0">
+
+    <record id="school_lesson_6_1.book_2" model="library.book">
+        <field name="name">Поклик нащадків</field>
+    </record>
+
+    <delete id="school_lesson_6_1.book_1" model="library.book"/>
+</odoo>
